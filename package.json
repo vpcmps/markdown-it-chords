@@ -1,10 +1,13 @@
 {
   "name": "markdown-it-chords",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "Add support for lyric sheet chords in markdown.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "make build",
+    "build": "tsc",
+    "minify": "terser dist/index.js -o dist/index.min.js",
+    "prepublishOnly": "npm run build",
     "coverage": "yarn test && nyc report -r text-lcov | coveralls",
     "docs": "./readme.js",
     "lint": "eslint .",
@@ -17,17 +20,23 @@
   ],
   "author": "David Hunt",
   "license": "MIT",
+  "dependencies": {
+    // ...existing dependencies...
+  },
   "devDependencies": {
+    "typescript": "^4.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/markdown-it": "^14.1.2",
     "browserify": "^16.2.3",
     "coveralls": "^3.1.0",
     "eslint": "^5.16.0",
+    "jest": "^29.7.0",
     "markdown-it": "^8.4.2",
     "markdown-it-testgen": "^0.1.5",
-    "mocha": "^6.1.4",
     "nyc": "^14.1.1",
-    "terser": "^3.17.0"
+    "terser": "^3.17.0",
+    "ts-jest": "^29.2.6"
   },
-  "dependencies": {},
   "directories": {
     "doc": "docs",
     "test": "test"
